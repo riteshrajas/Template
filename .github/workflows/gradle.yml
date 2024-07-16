@@ -1,0 +1,32 @@
+name: Java CI with Gradle
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+        distribution: 'adopt' # For Red Hat, specify if there's a specific action or modify accordingly
+
+    - name: Download WPILib Extension
+      run: |
+        mkdir -p /opt/wpilib
+        wget -P /opt/wpilib 'https://github.com/wpilibsuite/vscode-wpilib/releases/download/v2024.3./vscode-wpilib-2024.3.1.vsix'
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Build with Gradle
+      run: ./gradlew build
