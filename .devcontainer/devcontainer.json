@@ -5,7 +5,23 @@
 		},
 		"customizations": {
 		  "vscode": {
-			"extensions": ["/opt/vscode-wpilib-2024.3.1.vsix", "redhat.java", "vscjava.vscode-java-debug", "vscjava.vscode-java-dependency", "ms-vscode.cpptools"]
+			"extensions": [
+				"/opt/vscode-wpilib-2024.3.1.vsix",
+				"redhat.java",
+				"vscjava.vscode-java-debug",
+				"vscjava.vscode-java-dependency",
+				"ms-vscode.cpptools",
+				"vscjava.vscode-java-pack",
+				"vscjava.vscode-gradle",
+				"VisualStudioExptTeam.vscodeintellicode",
+				"VisualStudioExptTeam.intellicode-api-usage-examples",
+				"vscjava.vscode-maven",
+				"vscjava.vscode-java-test",
+				"wpilibsuite.vscode-wpilib",
+				"wpilibcustomutils.wpilib-build-deploy-command",
+				"mortorqrobotics.wpilib-java-snippets",
+				"eamodio.gitlens"
+			]
 		  }
 		}
 	  }
