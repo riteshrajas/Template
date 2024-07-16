@@ -27,7 +27,7 @@ public class RobotContainer
     private final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
     
     // Replace with CommandPS4Controller or CommandJoystick if needed
-    private final CommandXboxCont roller driverController =
+    private final CommandXboxController driverController =
             new CommandXboxController(OperatorConstants.DRIVER_CONTROLLER_PORT);
     
     
