@@ -1,32 +1,38 @@
-name: Java CI with Gradle
+# This is a basic workflow to build robot code.
 
+name: CI
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch.
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # This workflow contains a single job called "build"
   build:
-
+    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
+    # This grabs the WPILib docker container
+    container: wpilib/roborio-cross-ubuntu:2023-22.04
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - uses: actions/checkout@v2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v2
-      with:
-        java-version: '17'
-        distribution: 'adopt' # For Red Hat, specify if there's a specific action or modify accordingly
+      # Declares the repository safe and not under dubious ownership.
+      - name: Add repository to git safe directories
+        run: git config --global --add safe.directory $GITHUB_WORKSPACE
 
-    - name: Download WPILib Extension
-      run: |
-        mkdir -p /opt/wpilib
-        wget -P /opt/wpilib 'https://github.com/wpilibsuite/vscode-wpilib/releases/download/v2024.3./vscode-wpilib-2024.3.1.vsix'
+      # Grant execute permission for gradlew
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-
-    - name: Build with Gradle
-      run: ./gradlew build
+      # Runs a single command using the runners shell
+      - name: Compile and run tests on robot code
+        run: ./gradlew build
